@@ -1,0 +1,23 @@
+{
+  "name": "little-url",
+  "version": "1.0.0",
+  "description": "free code camp - api challenges (3)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdelmageed/little-url.git"
+  },
+  "author": "Abdelmageed Sayed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abdelmageed/little-url/issues"
+  },
+  "homepage": "https://github.com/Abdelmageed/little-url#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.2.20"
+  }
+}
