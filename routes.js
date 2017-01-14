@@ -1,10 +1,7 @@
 const app = require ('./app'),
       isUrl = require ('is-url'),
-      shortId = require ('shortid')
-
-app.get ('/hello', (req, res) => {
-    res.end ('Hello!')
-})
+      shortId = require ('shortid'),
+      path = require ('path')
 
 app.get(/^\/new\/(.+)/, (req, res) => {
     let href = req.params[0] 
@@ -23,12 +20,17 @@ app.get(/^\/new\/(.+)/, (req, res) => {
 app.get ('/:shortUrl', (req, res) => {
     urlRedirect (req.params.shortUrl, (originalUrl) => {
         if (!originalUrl) {
-            res.status (500).end ('short url was not found in database.')
+            res.status (500).send ('short url was not found in database.')
         } else {
             res.redirect (originalUrl)
         } 
     })
 })
+
+app.all('*', (req, res) => {
+  res.redirect(__dirname);
+})
+
 
 const insertNewUrl = (url, callback) => {
 //    let newUrl = {}
@@ -60,8 +62,10 @@ const urlRedirect = (shortUrl, callback) => {
         .toArray ((err, res) => {
         if (err) throw err
         if (res.length == 0) {
+            console.log ('should display error')
             callback (null)
         } else {
+            console.log ('here?')
             callback (res[0].long)
         }
     })
